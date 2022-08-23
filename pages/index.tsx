@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <h1 className="text-6xl font-bold">
           Coming Soon:{' '}
           <a className="text-blue-600" href="https://nextjs.org">
-          Next.js/Talwind powered Blog
+          Next.js/Tailwind powered Blog
           </a>
         </h1>
       </main>
