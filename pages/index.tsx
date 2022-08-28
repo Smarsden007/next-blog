@@ -2,24 +2,26 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
+const posts = [
+  { title: 'React Testing', excerpt: 'Learn React Testing'},
+  { title: 'React Testing', excerpt: 'Learn React Testing'},
+]
+
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="container mx-auto px-10 mb-8">
       <Head>
-        <title>Next.js/Tailwind powered Blog Coming Soon!</title>
+        <title>Letterway Blog</title>
         <link rel="icon" href="" />
       </Head>
-
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bolder">
-          Coming Soon:{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-          Next.js/Tailwind powered Blog
-          </a>
-        </h1>
-      </main>
-
-     
+      <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
+        {posts.map((posts, index) => (
+          <div>
+            {posts.title}
+            {posts.excerpt}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
