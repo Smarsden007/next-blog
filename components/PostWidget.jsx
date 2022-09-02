@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
 import { getRecentPosts, getSimilarPosts } from '../services'
-import { imageConfigDefault } from 'next/dist/shared/lib/image-config'
+// import { imageConfigDefault } from 'next/dist/shared/lib/image-config'
 
 // Currently non operation for icon image
 // import { graphCMSImageLoader } from '../util';
