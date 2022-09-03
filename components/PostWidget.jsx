@@ -3,11 +3,11 @@ import moment from 'moment'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
-import { getRecentPosts, getSimilarPosts } from '../services'
+import { getRecentPosts, getSimilarPosts,getPostDetails } from '../services'
 // import { imageConfigDefault } from 'next/dist/shared/lib/image-config'
 
 // Currently non operation for icon image
-// import { graphCMSImageLoader } from '../util';
+import { graphCMSImageLoader } from '../util';
 
 
 const PostWidget = ({ categories, slug }) => {
@@ -31,7 +31,7 @@ const PostWidget = ({ categories, slug }) => {
       {relatedPosts.map((post, index) => (
         <div key={index} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">
-            {/* <Image
+            <img
               loader={graphCMSImageLoader}
               alt={post.title}
               height="60px"
@@ -39,7 +39,7 @@ const PostWidget = ({ categories, slug }) => {
               unoptimized
               className="align-middle rounded-full"
               src={post.featuredImage.url}
-            /> */}
+            />
           </div>
           <div className="flex-grow ml-4">
             <p className="text-gray-500 font-xs">{moment(post.createdAt).format('MMM DD, YYYY')}</p>

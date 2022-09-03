@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
+import { getPostDetails } from "../services";
 
 import { grpahCMSImageLoader } from "../util";
 
@@ -17,7 +18,7 @@ const PostCard = ({ post }) => (
       />
     </div>
 
-    <h1 className="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
+    <h1 className="transition duration-700 text-center mb-8 cursor-pointer hover:text-blue-600 text-3xl font-semibold">
       <Link href={`/post/${post.slug}`}>{post.title}</Link>
     </h1>
     <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
@@ -25,14 +26,14 @@ const PostCard = ({ post }) => (
         {/* <Image
           unoptimized
           loader={grpahCMSImageLoader}
-          alt={post.author.name}
+          alt={post}
           height="30px"
           width="30px"
           className="align-middle rounded-full"
-          src={post.author.photo.url}
+          
         /> */}
         <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
-          {post.bio}
+          {post.Image}
         </p>
       </div>
       <div className="font-medium text-gray-700">
