@@ -15,7 +15,7 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["./src/index.d.ts","next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["./src/index.d.ts","next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/comments.js"],
   
   "exclude": ["node_modules"]
 }
