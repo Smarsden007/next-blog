@@ -48,6 +48,7 @@ const PostWidget = ({ categories, slug }) => {
         </div>
       ))}
     </div>
+    
   );
 };
 
