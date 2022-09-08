@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getCategories } from '../services';
 import * as logo from './../public/letterway.png'
-const Header = () => {
+const Header = (post) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Header = () => {
       <div className="border-b w-full inline-block border-black-400 py-8">
         <div className="md:float-left block">
           <Link href="/">
-            <span className="cursor-pointer font-bold text-6xl text-white text-yellow-300">Letterway</span>
+            <span className="cursor-pointer font-bold text-6xl text-white text-yellow-300">{post.photo? post.photo:"Letterway"}</span>
           </Link>
         </div>
         <div className="hidden md:float-left md:contents">
