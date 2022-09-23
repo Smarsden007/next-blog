@@ -1,24 +1,41 @@
 import React, { useState, useEffect } from 'react';
 
 import Link from 'next/link';
-import { getCategories } from '../services';
-import * as logo from './../public/letterway.png'
+import { getCategories, getCompany } from '../services';
 const Header = () => {
   const [categories, setCategories] = useState([]);
+  const [company, setCompany] = useState([]);
 
   useEffect(() => {
     getCategories().then((newCategories) => {
       setCategories(newCategories);
+
+      console.log("### catagories ", categories)
     });
+    getCompany().then((newCompany) => {
+      setCompany(newCompany)
+      console.log("### Company ", company)
+
+    })
   }, []);
+
+  
+  
 
   return (
     <div className="container mx-auto px-10 mb-8">
       <div className="border-b w-full inline-block border-black-400 py-8">
-        <div className="md:float-left block">
-          <Link href="/">
+        <div className="block">
+          {
+            !company.logo && 
+            <Link href={``}>
             <span className="cursor-pointer font-bold text-6xl text-white text-yellow-300">Letterway</span>
-          </Link>
+          </Link>}
+          {company.logo && 
+            <Link href={`${company.siteLink}`}>
+              <img src={company.logo.url} className="h-8"/>
+            </Link>
+          }
         </div>
         <div className="hidden md:float-left md:contents">
           {categories.map((category, index) => (
