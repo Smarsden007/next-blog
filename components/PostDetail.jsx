@@ -3,6 +3,7 @@ import React from 'react';
 import moment from 'moment';
 
 import { getPostDetails } from '../services';
+import Link from 'next/link';
 
 
 const PostDetail = ({ post }) => {
@@ -72,10 +73,25 @@ const PostDetail = ({ post }) => {
             </div>
           </div>
           <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
-          {post.content.raw.children.map((typeObj, index) => {
-            const children = typeObj.children.map((item, itemindex) => getContentFragment(itemindex, item.text, item));
-
-            return getContentFragment(index, children, typeObj, typeObj.type);
+            {post.content.raw.children.map((typeObj, index) => {
+              console.log("### HERERERERE >>>>>>>> ", typeObj, index, typeof(typeObj), typeObj.length)
+              if(typeObj.src) {
+                return <img src={typeObj.src} alt="nonya" className='h-24' />              
+              }
+              return typeObj.children.map((child, idx)=>{
+                console.log("#### $$$$$$$ ", child)
+                if(child.text) {
+                  return <span>{child.text}</span>
+                } else if(child.href) {
+                  return <Link  className="hover:text-blue-900" href={child.href}>{child.href}</Link>
+                
+                } else if(child.src){
+                  console.log("##### src", child.src)
+                  
+                } else {
+                  return 
+                }
+              })
           })}
         </div>
       </div>}
