@@ -35,9 +35,24 @@ export const getPosts = async () => {
   `;
 
   const result = await request(graphqlAPI, query);
-
   return result.postsConnection.edges;
 };
+
+export const getCompany = async ()=> {
+ const query = gql`
+    query GetCompany {
+      companies {
+      logo {
+        url
+      }
+      siteLink
+      }
+    }
+  `;
+  const result = await request(graphqlAPI, query);
+  console.log("### result ", result)
+  return result.companies[0]; 
+}
 
 export const getCategories = async () => {
   const query = gql`
