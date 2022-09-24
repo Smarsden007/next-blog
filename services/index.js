@@ -7,6 +7,7 @@ export const getPosts = async () => {
     query MyQuery {
       postsConnection {
         edges {
+          cursor
           node {
             author {
               bio
@@ -235,7 +236,7 @@ export const submitComment = async (obj) => {
 export const getComments = async (slug) => {
   const query = gql`
     query GetComments($slug:String!) {
-      comments(where: {slug: {slug:$slug}}){
+      comments(where: {post: {slug:$slug}}){
         name
         createdAt
         comment
