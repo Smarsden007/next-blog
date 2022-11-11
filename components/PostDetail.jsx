@@ -83,7 +83,7 @@ const PostDetail = ({ post }) => {
                 if(child.text) {
                   return <span>{child.text}</span>
                 } else if(child.href) {
-                  return <a className="hover:text-blue-600 font-bold" href={child.href}>Link Here</a>
+                  return <a className="hover:text-blue-600 font-bold" href={child.href}>{children.href}</a>
                 
                 } else if(child.src){
                   console.log("##### src", child.src)
