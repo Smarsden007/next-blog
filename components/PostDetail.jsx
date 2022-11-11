@@ -73,20 +73,16 @@ const PostDetail = ({ post }) => {
             </div>
           </div>
           <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
-            {post.content.raw.children.map((typeObj, index) => {
-              console.log("### HERERERERE >>>>>>>> ", typeObj, index, typeof(typeObj), typeObj.length)
-              if(typeObj.src) {
+            {post.content.raw.children.map((typeObj, index) => {              if(typeObj.src) {
                 return <img src={typeObj.src} alt="nonya" className='h-24' />              
               }
               return typeObj.children.map((child, idx)=>{
-                console.log("#### $$$$$$$ ", child)
                 if(child.text) {
                   return <span>{child.text}</span>
                 } else if(child.href) {
-                  return <a className="hover:text-blue-600 font-bold" href={child.href}>{children.href}</a>
+                  return <a className="hover:text-blue-600 font-bold" href={child.href}>{child.children[0].text}</a>
                 
                 } else if(child.src){
-                  console.log("##### src", child.src)
                   
                 } else {
                   return 
