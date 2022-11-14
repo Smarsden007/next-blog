@@ -29,7 +29,7 @@ const Header = () => {
           {
             !company.logo && 
             <Link href={``}>
-            <span className="cursor-pointer font-bold text-6xl text-white text-yellow-300">Letterway</span>
+            <span className="cursor-pointer font-bold text-6xl text-white text-orange-300">Letterway</span>
           </Link>}
           {company.logo && 
             <Link href={`${company.siteLink}`}>
@@ -39,7 +39,7 @@ const Header = () => {
         </div>
         <div className="hidden md:float-left md:contents">
           {categories.map((category, index) => (
-            <Link key={index} href={`/category/${category.slug}`}><span className="md:float-right mt-2 align-middle text-white ml-4 mt-6 mr-2 font-semibold text-yellow-300 text-xl cursor-pointer">{category.name}</span></Link>
+            <Link key={index} href={`/category/${category.slug}`}><span className="md:float-right mt-2 align-middle text-white ml-4 mt-6 mr-2 font-semibold text-[#FF6513] text-xl cursor-pointer">{category.name}</span></Link>
           ))}
         </div>
       </div>
