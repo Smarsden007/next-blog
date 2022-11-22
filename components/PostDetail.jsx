@@ -7,24 +7,25 @@ import Link from 'next/link';
 
 
 const PostDetail = ({ post }) => {
-  const getContentFragment = (index, text, obj, type) => {
-    console.log("### obj", index, obj, type)
+  const getContentFragment = (index, text, obj, type, parent) => {
     let modifiedText = text;
-
+    let shouldReturn = false
     if (obj) {
       if (obj.bold) {
         modifiedText = (<b key={index}>{text}</b>);
+        shouldReturn = true
       }
 
       if (obj.italic) {
         modifiedText = (<em key={index}>{text}</em>);
+        shouldReturn = true
       }
 
       if (obj.underline) {
         modifiedText = (<u key={index}>{text}</u>);
+        shouldReturn = true
       }
     }
-
     switch (type) {
       case 'heading-three':
         return <h3 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h3>;
@@ -42,12 +43,40 @@ const PostDetail = ({ post }) => {
             src={obj.src}
           />
         );
+      case 'list-item':
+        return (
+        <>
+          <ul>
+            <li className='ml-4'><b className='ml-[-15px]'>• </b>
+              {obj.children[0].children.map((item, index) => {
+                let className = '';
+                if(index === 0) {
+                }
+                let text = item.text
+                if(item.bold) {
+                  text = <b>{text}</b>
+                }
+                if(obj.italic){
+                  text = <em key={item.index}>{text}</em>
+                }
+                if(obj.undefined) {
+                  text = <u>{text}</u>
+                }
+                return <span>{text}</span>
+                
+              })}
+            </li>
+          </ul>
+        </>
+        )
       case 'link':
         return <a className="hover:cursor-pointer hover:underline font-medium text-blue-800 text-underline" href={obj.href}>{obj.children[0].text}</a>
       case undefined:
-        return <br/>
-      default:
-        return modifiedText;
+        if(obj.text===''){
+          return <><br/><br/></>
+        }
+       default:
+        return (<>{modifiedText}</>);
     }
   };
   return (
@@ -77,13 +106,21 @@ const PostDetail = ({ post }) => {
             </div>
           </div>
           <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
-            {post.content.raw.children.map((typeObj, index) => {              
+            {post.content.raw.children.map((typeObj, index) => {    
               if(typeObj.src) {
-                return getContentFragment(index,typeObj.text, typeObj, typeObj.type)
+                return <>
+                  {getContentFragment(index,typeObj.text, typeObj, typeObj.type)}
+                </>
               }
-              return typeObj.children.map((child, idx)=>{
-                return <>{getContentFragment(idx, child.text, child, child.type)}</>           
-              })
+              return <>
+                {
+                  typeObj.children.map((child, idx)=>{
+                    return <>{getContentFragment(idx, child.text, child, child.type)}</>           
+                })
+                }
+                  {typeObj.type!== 'bulleted-list' && <><br/><br/></>}
+                  {typeObj.type == 'bulleted-list' && <><br/></>}
+              </>
           })}
         </div>
       </div>}
