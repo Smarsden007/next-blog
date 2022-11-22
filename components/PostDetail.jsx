@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 const PostDetail = ({ post }) => {
   const getContentFragment = (index, text, obj, type) => {
+    console.log("### obj", index, obj, type)
     let modifiedText = text;
 
     if (obj) {
@@ -41,11 +42,14 @@ const PostDetail = ({ post }) => {
             src={obj.src}
           />
         );
+      case 'link':
+        return <a className="hover:cursor-pointer hover:underline font-medium text-blue-800 text-underline" href={obj.href}>{obj.children[0].text}</a>
+      case undefined:
+        return <br/>
       default:
         return modifiedText;
     }
   };
-  console.log("### post ", post.author?.name)
   return (
     <>
       {post && <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
@@ -73,20 +77,12 @@ const PostDetail = ({ post }) => {
             </div>
           </div>
           <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
-            {post.content.raw.children.map((typeObj, index) => {              if(typeObj.src) {
-                return <img src={typeObj.src} alt="nonya" className='h-24' />              
+            {post.content.raw.children.map((typeObj, index) => {              
+              if(typeObj.src) {
+                return getContentFragment(index,typeObj.text, typeObj, typeObj.type)
               }
               return typeObj.children.map((child, idx)=>{
-                if(child.text) {
-                  return <span>{child.text}</span>
-                } else if(child.href) {
-                  return <a className="hover:text-blue-600 font-bold" href={child.href}>{child.children[0].text}</a>
-                
-                } else if(child.src){
-                  
-                } else {
-                  return 
-                }
+                return <>{getContentFragment(idx, child.text, child, child.type)}</>           
               })
           })}
         </div>

@@ -50,7 +50,6 @@ export const getCompany = async ()=> {
     }
   `;
   const result = await request(graphqlAPI, query);
-  console.log("### result ", result)
   return result.companies[0]; 
 }
 
@@ -99,7 +98,6 @@ export const getPostDetails = async (slug) => {
   `;
   
   const result = await request(graphqlAPI, query, { slug });
-    console.log("### Post Results ", result)
   return result.post;
 };
 

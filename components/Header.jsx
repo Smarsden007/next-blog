@@ -9,13 +9,9 @@ const Header = () => {
   useEffect(() => {
     getCategories().then((newCategories) => {
       setCategories(newCategories);
-
-      console.log("### catagories ", categories)
     });
     getCompany().then((newCompany) => {
       setCompany(newCompany)
-      console.log("### Company ", company)
-
     })
   }, []);
 
