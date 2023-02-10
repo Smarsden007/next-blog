@@ -29,7 +29,7 @@ const Header = () => {
           </Link>}
           {company.logo && 
             <Link href={`${company.siteLink}`}>
-              <img src={company.logo.url} className="h-8"/>
+              <img src={company.logo.url} className="h-48"/>
             </Link>
           }
         </div>
